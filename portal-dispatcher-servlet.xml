@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+	
+	<context:component-scan base-package="dj" />
+<!-- 	<bean id="propertyPlaceHolder"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:/conf/AppDb.properties</value>
+		</property>
+	</bean>
+	 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="hibernateProperties">
+			<props>
+			  	<prop key="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</prop>
+        		<prop key="hibernate.connection.password">sts1516</prop>
+        		<prop key="hibernate.connection.url">jdbc:oracle:thin:@192.168.1.250:1521:XE</prop>
+        		<prop key="hibernate.connection.username">sts1516</prop>
+        		<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.connection.autoReconnect">true</prop>
+				<prop key="hibernate.connection.release_mode">on_close</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.connection.charSet">utf-8</prop>
+				<prop key="hibernate.connection.useUnicode">true</prop>
+				<prop key="hibernate.connection.characterEncoding">utf-8</prop>
+				<prop key="hibernate.connection.defaultNChar">true</prop>
+			    <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+	
+			</props>
+		</property>
+		<property name="packagesToScan" value="dj.BO"></property>
+	</bean>
+	
+	 <bean id="multipartResolver"   
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+      
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+</beans>
